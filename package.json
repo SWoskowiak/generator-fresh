@@ -1,0 +1,17 @@
+{
+  "name": "generator-fresh",
+  "version": "1.0.0",
+  "description": "Basic scaffold for general projects",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "yeoman-generator"
+  ],
+  "author": "Stefan Woskowiak",
+  "license": "ISC",
+  "dependencies": {
+    "yeoman-generator": "^0.22.5"
+  }
+}
