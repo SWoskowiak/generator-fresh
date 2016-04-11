@@ -5,3 +5,4 @@ node_modules
 # Un-ignore .gitignore so we commit it initially if we havn't
 !/.gitignore
 !/.travis.yml
+!/app/**
