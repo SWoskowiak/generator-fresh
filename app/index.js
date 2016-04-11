@@ -49,6 +49,7 @@ module.exports = generators.Base.extend({
     // Build out package.json
     this.template('_package.json', 'package.json', answers);
     // Grab our travis file if we want travis ci + coveralls support
+    if (answers.mocha === 'y') { this.directory('test'); }
     if (answers.coveralls === 'y') { this.directory('ci', '.'); }
     // Copy all files in the base directory
     this.directory('base', '.');
