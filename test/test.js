@@ -4,7 +4,7 @@ var path = require('path'),
   helpers = require('yeoman-test'),
   assert = require('yeoman-assert');
 
-describe('Fresh Generator', function () {
+describe('generator-fresh:app', function () {
   beforeEach(function () {
     this.tester = helpers.run(path.join(__dirname, '../app'))
       .withPrompts({
@@ -18,9 +18,9 @@ describe('Fresh Generator', function () {
     beforeEach(function (done) {
       this.tester.on('end', done);
     });
-
+    console.log(path.join(__dirname, '../app'));
     it ('generates all the appropriate files given "y" to all answers', function () {
-      // Check everything was made
+      // Check all files exist where they should
       assert.file([
         '.gitignore',
         '.jshintrc',
