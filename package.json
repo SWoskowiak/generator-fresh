@@ -4,7 +4,8 @@
   "description": "Basic scaffold for general projects",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha test/test.js",
+    "test-coverage": "./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha -- -R spec ./test/*"
   },
   "keywords": [
     "yeoman-generator"
@@ -12,6 +13,8 @@
   "author": "Stefan Woskowiak",
   "license": "ISC",
   "dependencies": {
-    "yeoman-generator": "^0.22.5"
+    "yeoman-assert": "^2.1.2",
+    "yeoman-generator": "^0.22.5",
+    "yeoman-test": "^1.1.0"
   }
 }
