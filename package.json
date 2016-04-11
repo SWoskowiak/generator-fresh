@@ -13,7 +13,6 @@
   "author": "Stefan Woskowiak",
   "license": "ISC",
   "devDependencies": {
-    "yeoman": "~0.9.1",
     "yeoman-assert": "^2.1.2",
     "yeoman-generator": "^0.22.5",
     "yeoman-test": "^1.1.0",
