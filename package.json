@@ -12,9 +12,12 @@
   ],
   "author": "Stefan Woskowiak",
   "license": "ISC",
-  "dependencies": {
+  "devDependencies": {
     "yeoman-assert": "^2.1.2",
     "yeoman-generator": "^0.22.5",
-    "yeoman-test": "^1.1.0"
+    "yeoman-test": "^1.1.0",
+    "coveralls": "^2.11.9",
+    "istanbul": "^0.4.2",
+    "mocha": "^2.4.5"
   }
 }
