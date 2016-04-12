@@ -39,7 +39,7 @@ describe('generator-fresh:app', function () {
     //   'test/test.js'
     // ]);
     expect(tempDir + '/.gitignore').to.be.a.file();
-    expect(tempDir + '/.jscsrc').to.be.a.file();
+    //expect(tempDir + '/.jscsrc').to.be.a.file();
     expect(tempDir + '/.jshintrc').to.be.a.file();
     expect(tempDir + '/.travis.yml').to.be.a.file();
     expect(tempDir + '/index.js').to.be.a.file();
