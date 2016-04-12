@@ -47,7 +47,10 @@ module.exports = yeoman.Base.extend({
   },
 
   /**
-   * Install dependencies
+   * Install dependencies and copy config files
+   * NOTE: I defaulted file names to have leading underscores since Travis CI
+   * ignores certain dotfiles (.jshintrc, .jscsrc etc) and was causing tests
+   * to fail as a result
    */
   _installs: function (answers) {
     var installs = [];
@@ -59,7 +62,6 @@ module.exports = yeoman.Base.extend({
       this.destinationPath('package.json'),
       answers
     );
-    //this.template('package.json', 'package.json', answers);
     // Grab our travis file if we want travis ci + coveralls support
     if (answers.mocha === 'y') {
       this.fs.copy(
@@ -76,7 +78,6 @@ module.exports = yeoman.Base.extend({
       installs.push('coveralls', 'istanbul');
     }
     // Copy all files in the base directory
-    //this.directory('base', '.');
     this.fs.copy(
       this.templatePath('_jshintrc'),
       this.destinationPath('.jshintrc')

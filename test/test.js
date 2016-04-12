@@ -7,18 +7,75 @@ var path = require('path'),
 describe('generator-fresh:app', function () {
   var tempDir = '';
 
-  before(function (done) {
-    helpers.run(path.join(__dirname, '../generators/app'))
-      .withPrompts({
-        name: 'testName',
-        description: 'testDesc',
-        mocha: 'y',
-        coveralls: 'y'
-      })
-      .on('end', done);
+  describe('generates basic files with no additional options', function () {
+    before(function (done) {
+      helpers.run(path.join(__dirname, '../generators/app'))
+        .withPrompts({
+          name: 'testName',
+          description: 'testDesc',
+          mocha: 'n'
+        })
+        .on('end', done);
+    });
+
+    it ('generates all the appropriate files given "y" to all answers', function () {
+      // Check all files exist where they should
+      assert.file([
+        '.gitignore',
+        '.jshintrc',
+        '.jscsrc',
+        'package.json',
+        'index.js'
+      ]);
+
+      assert.noFile([
+        '.travis.yml',
+        'test/test.js'
+      ]);
+    });
+  });
+
+  describe('generates basic files with w/ mocha but no coveralls', function () {
+    before(function (done) {
+      helpers.run(path.join(__dirname, '../generators/app'))
+        .withPrompts({
+          name: 'testName',
+          description: 'testDesc',
+          mocha: 'y',
+          coveralls: 'n'
+        })
+        .on('end', done);
+    });
+
+    it ('generates all the appropriate files given "y" to all answers', function () {
+      // Check all files exist where they should
+      assert.file([
+        '.gitignore',
+        '.jshintrc',
+        '.jscsrc',
+        'package.json',
+        'index.js',
+        'test/test.js'
+      ]);
+
+      assert.noFile([
+        '.travis.yml'
+      ]);
+    });
   });
 
   describe('generates all files', function () {
+    before(function (done) {
+      helpers.run(path.join(__dirname, '../generators/app'))
+        .withPrompts({
+          name: 'testName',
+          description: 'testDesc',
+          mocha: 'y',
+          coveralls: 'y'
+        })
+        .on('end', done);
+    });
+
     it ('generates all the appropriate files given "y" to all answers', function () {
       // Check all files exist where they should
       assert.file([
