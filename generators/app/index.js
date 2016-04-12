@@ -51,6 +51,7 @@ module.exports = yeoman.Base.extend({
    */
   _installs: function (answers) {
     var installs = [];
+    console.log('\n\n\n CALLLED CALLED \n\n\n\n');
     // If we said no to mocha make sure there is a valid value in coveralls
     answers.coveralls = answers.coveralls || false;
     // Build out package.json
