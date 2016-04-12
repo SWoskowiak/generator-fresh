@@ -58,14 +58,14 @@ module.exports = yeoman.Base.extend({
     // Grab our travis file if we want travis ci + coveralls support
     if (answers.mocha === 'y') {
       this.fs.copy(
-        this.templatePath('test/test.js'),
+        this.templatePath('test.js'),
         this.destinationPath('test/test.js')
       );
       installs.push('mocha', 'chai');
     }
     if (answers.coveralls === 'y') {
       this.fs.copy(
-        this.templatePath('ci/.travis.yml'),
+        this.templatePath('.travis.yml'),
         this.destinationPath('.travis.yml')
       );
       installs.push('coveralls', 'istanbul');
@@ -73,19 +73,19 @@ module.exports = yeoman.Base.extend({
     // Copy all files in the base directory
     //this.directory('base', '.');
     this.fs.copy(
-      this.templatePath('base/.jshintrc'),
+      this.templatePath('.jshintrc'),
       this.destinationPath('.jshintrc')
     );
     this.fs.copy(
-      this.templatePath('base/.gitignore'),
+      this.templatePath('.gitignore'),
       this.destinationPath('.gitignore')
     );
     this.fs.copy(
-      this.templatePath('base/.jscsrc'),
+      this.templatePath('.jscsrc'),
       this.destinationPath('.jscsrc')
     );
     this.fs.copy(
-      this.templatePath('base/index.js'),
+      this.templatePath('index.js'),
       this.destinationPath('index.js')
     );
 
