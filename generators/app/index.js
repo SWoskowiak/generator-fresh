@@ -46,11 +46,6 @@ module.exports = yeoman.Base.extend({
     }.bind(this));
   },
 
-  test: function () {
-    console.log(this.destinationRoot());
-
-    console.log(this.destinationPath('index.js'));
-  },
   /**
    * Install dependencies
    */
@@ -62,15 +57,37 @@ module.exports = yeoman.Base.extend({
     this.template('package.json', 'package.json', answers);
     // Grab our travis file if we want travis ci + coveralls support
     if (answers.mocha === 'y') {
-      this.directory('test');
+      this.fs.copy(
+        this.templatePath('test/test.js'),
+        this.destinationPath('test/test.js')
+      );
       installs.push('mocha', 'chai');
     }
     if (answers.coveralls === 'y') {
-      this.directory('ci', '.');
+      this.fs.copy(
+        this.templatePath('ci/.travis.yml'),
+        this.destinationPath('.travis.yml')
+      );
       installs.push('coveralls', 'istanbul');
     }
     // Copy all files in the base directory
-    this.directory('base', '.');
+    //this.directory('base', '.');
+    this.fs.copy(
+      this.templatePath('base/.jshintrc'),
+      this.destinationPath('.jshintrc')
+    );
+    this.fs.copy(
+      this.templatePath('base/.gitignore'),
+      this.destinationPath('.gitignore')
+    );
+    this.fs.copy(
+      this.templatePath('base/.jscsrc'),
+      this.destinationPath('.jscsrc')
+    );
+    this.fs.copy(
+      this.templatePath('base/index.js'),
+      this.destinationPath('index.js')
+    );
 
     // If we have any dev dependencies then install em
     if (installs.length) {

@@ -5,6 +5,8 @@ var path = require('path'),
   assert = require('yeoman-assert');
 
 describe('generator-fresh:app', function () {
+  var tempDir = '';
+
   before(function (done) {
     helpers.run(path.join(__dirname, '../generators/app'))
       .withPrompts({
@@ -17,7 +19,6 @@ describe('generator-fresh:app', function () {
   });
 
   describe('generates all files', function () {
-
     it ('generates all the appropriate files given "y" to all answers', function () {
       // Check all files exist where they should
       assert.file([
