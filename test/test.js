@@ -33,6 +33,10 @@ describe('generator-fresh:app', function () {
     //   'test/test.js'
     // ]);
     expect('.gitignore').to.be.a.file();
+    expect('.jscsrc').to.be.a.file();
+    expect('.jshintrc').to.be.a.file();
+    expect('.travis.yml').to.be.a.file();
     expect('test/test.js').to.be.a.file();
+
   });
 });
