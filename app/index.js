@@ -1,10 +1,17 @@
 'use strict';
-var generators = require('yeoman-generator');
+var yeoman = require('yeoman-generator'),
+  chalk = require('chalk'),
+  yosay = require('yosay');
 
-module.exports = generators.Base.extend({
+module.exports = yeoman.Base.extend({
+
   prompts: function () {
-
     var done = this.async();
+
+    // Have Yeoman greet the user.
+    this.log(yosay(
+      'I\'m an asshole!' + chalk.red(' ~FRESH~')
+    ));
 
     // Ask for the project name and if we are gonna add coveralls support
     this.prompt([{
@@ -20,7 +27,7 @@ module.exports = generators.Base.extend({
     },{
       type: 'input',
       name: 'mocha',
-      message: 'Add mocha+chai?',
+      message: 'Add mocha+chai? (y/n)',
       choices: ['y', 'n'],
       default: 'y'
     },{
@@ -29,25 +36,25 @@ module.exports = generators.Base.extend({
       },
       type: 'input',
       name: 'coveralls',
-      message: 'Add travis/coveralls support?',
+      message: 'Add travis/coveralls support (y/n)?',
       choices: ['y', 'n'],
       default: 'n'
     }], function (answers) {
       // Pass the answers to the install func
-      this._installDev(answers);
+      this._installs(answers);
       done();
     }.bind(this));
   },
 
   /**
-   * Install dev dependencies
+   * Install dependencies
    */
-  _installDev: function (answers) {
+  _installs: function (answers) {
     var installs = [];
     // If we said no to mocha make sure there is a valid value in coveralls
     answers.coveralls = answers.coveralls || false;
     // Build out package.json
-    this.template('_package.json', 'package.json', answers);
+    this.template('package.json', 'package.json', answers);
     // Grab our travis file if we want travis ci + coveralls support
     if (answers.mocha === 'y') { this.directory('test'); }
     if (answers.coveralls === 'y') { this.directory('ci', '.'); }

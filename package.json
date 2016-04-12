@@ -13,10 +13,11 @@
   "author": "Stefan Woskowiak",
   "license": "ISC",
   "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-fs": "^0.1.0",
     "coveralls": "^2.11.9",
     "istanbul": "^0.4.2",
     "mocha": "^2.4.5",
-    "yeoman-assert": "^2.1.2",
     "yeoman-generator": "^0.22.5",
     "yeoman-test": "^1.1.0",
     "yo": "^1.7.0"

@@ -2,7 +2,12 @@
 
 var path = require('path'),
   helpers = require('yeoman-test'),
-  assert = require('yeoman-assert');
+  chai = require('chai'),
+  expect = chai.expect;
+
+
+chai.use(require('chai-fs'));
+
 
 describe('generator-fresh:app', function () {
   before(function (done) {
@@ -18,14 +23,16 @@ describe('generator-fresh:app', function () {
 
   it ('generates all the appropriate files given "y" to all answers', function () {
     // Check all files exist where they should
-    assert.file([
-      '.gitignore',
-      '.jshintrc',
-      '.jscsrc',
-      '.travis.yml',
-      'package.json',
-      'index.js',
-      'test/test.js'
-    ]);
+    // assert.file([
+    //   '.gitignore',
+    //   '.jshintrc',
+    //   '.jscsrc',
+    //   '.travis.yml',
+    //   'package.json',
+    //   'index.js',
+    //   'test/test.js'
+    // ]);
+    expect('.gitignore').to.be.a.file();
+    expect('test/test.js').to.be.a.file();
   });
 });
