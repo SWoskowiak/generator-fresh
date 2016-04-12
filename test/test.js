@@ -17,7 +17,7 @@ describe('generator-fresh:app', function () {
         .on('end', done);
     });
 
-    it ('generates all the appropriate files given "y" to all answers', function () {
+    it ('should have all base config files and no test folder or travis.yml', function () {
       // Check all files exist where they should
       assert.file([
         '.gitignore',
@@ -46,7 +46,7 @@ describe('generator-fresh:app', function () {
         .on('end', done);
     });
 
-    it ('generates all the appropriate files given "y" to all answers', function () {
+    it ('should have a test folder but no travis.yml', function () {
       // Check all files exist where they should
       assert.file([
         '.gitignore',
