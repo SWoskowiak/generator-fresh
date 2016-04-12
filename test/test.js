@@ -10,8 +10,14 @@ chai.use(require('chai-fs'));
 
 
 describe('generator-fresh:app', function () {
+  var tempDir = '';
+
   before(function (done) {
-    helpers.run(path.join(__dirname, '../app'))
+    helpers.run(path.join(__dirname, '../generators/app'))
+      .inTmpDir(function (dir) {
+        tempDir = dir;
+        console.log('DIR:', dir, '\n\n');
+      })
       .withPrompts({
         name: 'testName',
         description: 'testDesc',
@@ -32,11 +38,13 @@ describe('generator-fresh:app', function () {
     //   'index.js',
     //   'test/test.js'
     // ]);
-    expect('.gitignore').to.be.a.file();
-    expect('.jscsrc').to.be.a.file();
-    expect('.jshintrc').to.be.a.file();
-    expect('.travis.yml').to.be.a.file();
-    expect('test/test.js').to.be.a.file();
+    expect(tempDir + '/.gitignore').to.be.a.file();
+    expect(tempDir + '/.jscsrc').to.be.a.file();
+    expect(tempDir + '/.jshintrc').to.be.a.file();
+    expect(tempDir + '/.travis.yml').to.be.a.file();
+    expect(tempDir + '/index.js').to.be.a.file();
+    expect(tempDir + '/test/test.js').to.be.a.file();
+    expect(tempDir + '/package.json').to.be.a.file();
 
   });
 });
