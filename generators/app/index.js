@@ -46,26 +46,32 @@ module.exports = yeoman.Base.extend({
     }.bind(this));
   },
 
+  test: function () {
+    console.log(this.destinationRoot());
+
+    console.log(this.destinationPath('index.js'));
+  },
   /**
    * Install dependencies
    */
   _installs: function (answers) {
     var installs = [];
-    console.log('\n\n\n CALLLED CALLED \n\n\n\n');
     // If we said no to mocha make sure there is a valid value in coveralls
     answers.coveralls = answers.coveralls || false;
     // Build out package.json
     this.template('package.json', 'package.json', answers);
     // Grab our travis file if we want travis ci + coveralls support
-    if (answers.mocha === 'y') { this.directory('test'); }
-    if (answers.coveralls === 'y') { this.directory('ci', '.'); }
+    if (answers.mocha === 'y') {
+      this.directory('test');
+      installs.push('mocha', 'chai');
+    }
+    if (answers.coveralls === 'y') {
+      this.directory('ci', '.');
+      installs.push('coveralls', 'istanbul');
+    }
     // Copy all files in the base directory
     this.directory('base', '.');
 
-    // Add in mocha + chai
-    if (answers.mocha) { installs.push('mocha', 'chai'); }
-    // Add in coveralls support
-    if (answers.coveralls) { installs.push('coveralls', 'istanbul'); }
     // If we have any dev dependencies then install em
     if (installs.length) {
       this.npmInstall(installs, { saveDev: true });
