@@ -5,7 +5,6 @@ var path = require('path'),
   assert = require('yeoman-assert');
 
 describe('generator-fresh:app', function () {
-  var tempDir = '';
 
   describe('generates basic files with no additional options', function () {
     before(function (done) {
