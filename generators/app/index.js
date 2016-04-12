@@ -54,18 +54,23 @@ module.exports = yeoman.Base.extend({
     // If we said no to mocha make sure there is a valid value in coveralls
     answers.coveralls = answers.coveralls || false;
     // Build out package.json
-    this.template('package.json', 'package.json', answers);
+    this.fs.copy(
+      this.templatePath('_package.json'),
+      this.destinationPath('package.json'),
+      answers
+    );
+    //this.template('package.json', 'package.json', answers);
     // Grab our travis file if we want travis ci + coveralls support
     if (answers.mocha === 'y') {
       this.fs.copy(
-        this.templatePath('test.js'),
+        this.templatePath('_test.js'),
         this.destinationPath('test/test.js')
       );
       installs.push('mocha', 'chai');
     }
     if (answers.coveralls === 'y') {
       this.fs.copy(
-        this.templatePath('.travis.yml'),
+        this.templatePath('_travis.yml'),
         this.destinationPath('.travis.yml')
       );
       installs.push('coveralls', 'istanbul');
@@ -73,19 +78,19 @@ module.exports = yeoman.Base.extend({
     // Copy all files in the base directory
     //this.directory('base', '.');
     this.fs.copy(
-      this.templatePath('.jshintrc'),
+      this.templatePath('_jshintrc'),
       this.destinationPath('.jshintrc')
     );
     this.fs.copy(
-      this.templatePath('.gitignore'),
+      this.templatePath('_gitignore'),
       this.destinationPath('.gitignore')
     );
     this.fs.copy(
-      this.templatePath('.jscsrc'),
+      this.templatePath('_jscsrc'),
       this.destinationPath('.jscsrc')
     );
     this.fs.copy(
-      this.templatePath('index.js'),
+      this.templatePath('_index.js'),
       this.destinationPath('index.js')
     );
 
