@@ -57,11 +57,7 @@ module.exports = yeoman.Base.extend({
     // If we said no to mocha make sure there is a valid value in coveralls
     answers.coveralls = answers.coveralls || false;
     // Build out package.json
-    this.fs.copy(
-      this.templatePath('_package.json'),
-      this.destinationPath('package.json'),
-      answers
-    );
+    this.template('_package.json', 'package.json', answers);
     // Grab our travis file if we want travis ci + coveralls support
     if (answers.mocha === 'y') {
       this.fs.copy(
